@@ -72,8 +72,7 @@ Trained on **NeurIPS 2025 Open Polymer Prediction Challenge** dataset (3,502 sam
 - [x] Hugging Face Spaces deployment
 - [ ] More property predictions (Tg, FFV, Rg)
 - [ ] Molecular generation with VAE/Diffusion
-- [ ] arXiv paper submission
-- [ ] First pilot customer
+
 
 ---
 
