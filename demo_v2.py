@@ -81,8 +81,16 @@ density_std = df['Density'].std()
 tc_mean = df['Tc'].mean()
 tc_std = df['Tc'].std()
 
+from huggingface_hub import hf_hub_download
+import os
+
 model = MultiTaskGNN(input_dim=8, hidden_dim=128)
-model.load_state_dict(torch.load('best_model_final.pt'))
+model_path = hf_hub_download(
+    repo_id='00mahoon/polyinverse-model',
+    filename='best_model_final.pt',
+    repo_type='model'
+)
+model.load_state_dict(torch.load(model_path, map_location=torch.device('cpu')))
 model.eval()
 
 def predict_density(smiles):
