@@ -12,6 +12,19 @@ import random
 
 RDLogger.DisableLog('rdApp.*')
 
+import os, sys
+sys.path.append(os.path.join(__import__('rdkit').Chem.RDConfig.RDContribDir, 'SA_Score'))
+import sascorer
+
+def get_sa_score(smiles):
+    mol = Chem.MolFromSmiles(smiles)
+    if mol is None:
+        return 10.0
+    try:
+        return sascorer.calculateScore(mol)
+    except:
+        return 10.0
+
 def mol_to_graph(smiles):
     mol = Chem.MolFromSmiles(smiles)
     if mol is None:
@@ -109,7 +122,7 @@ def mutate_smiles(smiles):
         rw_mol = Chem.RWMol(mol)
         atom_idx = random.randint(0, mol.GetNumAtoms()-1)
         atom = rw_mol.GetAtomWithIdx(atom_idx)
-        candidates = [6, 7, 8, 9, 16, 17]
+        candidates = [6, 7, 8]
         candidates = [c for c in candidates if c != atom.GetAtomicNum()]
         atom.SetAtomicNum(random.choice(candidates))
         new_smiles = Chem.MolToSmiles(rw_mol)
@@ -159,9 +172,10 @@ def inverse_design(target_density, tolerance, n_iterations):
                 scores.append((smiles, pred, score))
         scores.sort(key=lambda x: x[2])
         for smiles, pred, score in scores:
-            if score <= tolerance:
+            sa = get_sa_score(smiles)
+            if score <= tolerance and sa <= 4.0:
                 if smiles not in [c[0] for c in best_candidates]:
-                    best_candidates.append((smiles, pred, score))
+                    best_candidates.append((smiles, pred, score, sa))
         survivors = [s[0] for s in scores[:25]]
         new_population = survivors.copy()
         while len(new_population) < 50:
@@ -181,7 +195,7 @@ def inverse_design(target_density, tolerance, n_iterations):
 
     result = f"## Inverse Design Results\n**Target Density:** {target_density:.3f} g/ml\n\n"
     result += "| SMILES | Predicted | Error |\n|--------|-----------|-------|\n"
-    for smiles, pred, error in top:
+    for smiles, pred, error, sa in top:
         result += f"| `{smiles[:40]}` | {pred:.4f} | {error:.4f} |\n"
 
     best_mol = Chem.MolFromSmiles(top[0][0])
