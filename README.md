@@ -48,8 +48,8 @@ Inspired by AlphaFold's approach to protein structure prediction, Polyinverse ap
 
 | Property | R² Score | MAE |
 |----------|----------|-----|
-| Density  | 0.757    | 0.0294 g/ml |
-| Tc       | 0.512    | 0.0364 |
+| Density  | 0.803    | 0.0336 g/ml |
+| Tc       | 0.681    | 0.0262 |
 
 Trained on **NeurIPS 2025 Open Polymer Prediction Challenge** dataset (3,502 samples).
 
