@@ -50,6 +50,7 @@ Inspired by AlphaFold's approach to protein structure prediction, Polyinverse ap
 |----------|----------|-----|
 | Density  | 0.803    | 0.0336 g/ml |
 | Tc       | 0.681    | 0.0262 |
+| Tg       | 0.373    | 68.4348 |
 
 Trained on **NeurIPS 2025 Open Polymer Prediction Challenge** dataset (3,502 samples).
 
