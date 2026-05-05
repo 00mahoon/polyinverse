@@ -102,7 +102,7 @@ for col in ['Density', 'Tc', 'Tg']:
 model = MultiTaskGNN(input_dim=8, hidden_dim=128)
 model_path = hf_hub_download(
     repo_id='00mahoon/polyinverse-model',
-    filename='best_multitask_tg.pt',
+    filename='best_combined.pt',
     repo_type='model'
 )
 model.load_state_dict(torch.load(model_path, map_location='cpu'))
