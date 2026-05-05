@@ -1,2 +1,10 @@
 *.pt
 *.bin
+.DS_Store
+*.aux
+*.log
+*.out
+*.synctex.gz
+texput.log
+*.code-workspace
+code paper_draft_v2.tex
