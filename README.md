@@ -76,8 +76,8 @@ Trained on **NeurIPS 2025 Open Polymer Prediction Challenge** dataset (3,502 sam
 - [x] Graph Neural Network (R² 0.757)
 - [x] Inverse design with genetic algorithm
 - [x] Hugging Face Spaces deployment
-- [ ] More property predictions (Tg, FFV, Rg)
-- [ ] Molecular generation with VAE/Diffusion
+- [x] More property predictions (Tg, FFV, Rg)
+- [x] Molecular generation with VAE/Diffusion
 
 
 ---
