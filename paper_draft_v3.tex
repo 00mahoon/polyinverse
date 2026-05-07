@@ -4,7 +4,6 @@
 \usepackage{graphicx}
 \usepackage{hyperref}
 \usepackage{booktabs}
-\usepackage{natbib}
 \usepackage{geometry}
 \usepackage[numbers]{natbib}
 \geometry{margin=1in}
@@ -13,8 +12,7 @@
 and SA Score-Guided Inverse Design}
 
 \author{
-  Ethna Im \\
-     \\
+  Ethan Im \\
   South Korea \\
   \texttt{lki100500@gmail.com}
 }
@@ -29,12 +27,14 @@ and SA Score-Guided Inverse Design}
 Polymer discovery traditionally relies on time-consuming trial-and-error experimentation.
 We present \textbf{Polyinverse}, an open-source framework combining multi-task Graph Neural
 Networks (GNNs) for polymer property prediction with a synthesizability-guided inverse design
-pipeline. Using only publicly available data from the NeurIPS 2025 Open Polymer Challenge
-dataset (3,502 polymers), our multi-task GNN simultaneously predicts density
-($R^2 = 0.757$, MAE $= 0.0294$ g/ml) and normalized crystallization temperature
-($R^2 = 0.512$, MAE $= 0.0364$ in normalized scale, MAE $= 0.0028$ in original unit) from SMILES representations.
-Multi-task learning improves density prediction by 27\% over single-task GNN baselines
-($R^2$: $0.595 \rightarrow 0.757$), supported by a statistically significant negative
+pipeline. By combining publicly available datasets from three sources (NeurIPS 2025 Open Polymer
+Challenge, Extended Polymer Dataset, and TG-Density Excerpt) into a unified corpus of 4,594
+unique polymer structures, our multi-task GNN simultaneously predicts three key properties:
+density ($R^2 = 0.803$, MAE $= 0.0336$ g/ml), normalized crystallization temperature Tc
+($R^2 = 0.681$, MAE $= 0.0262$ in normalized scale), and glass transition temperature Tg
+($R^2 = 0.373$, MAE $= 68.43$ °C) from SMILES representations.
+Multi-task learning improves density prediction by 35\% over single-task GNN baselines
+($R^2$: $0.595 \rightarrow 0.803$), supported by a statistically significant negative
 correlation between density and Tc ($r = -0.246$, $p = 1.07 \times 10^{-20}$).
 For inverse design, we propose a genetic algorithm incorporating SA Score filtering
 ($\leq 4.0$) to ensure synthetic accessibility of candidate polymers, achieving target
@@ -64,8 +64,9 @@ molecules with poor synthetic accessibility.
 
 In this work, we present \textbf{Polyinverse}, addressing both problems:
 \begin{enumerate}
-    \item A multi-task GNN that simultaneously predicts density and crystallization
-    temperature from polymer SMILES, leveraging their physical correlation.
+    \item A multi-task GNN that simultaneously predicts density, crystallization
+    temperature (Tc), and glass transition temperature (Tg) from polymer SMILES,
+    leveraging their physical correlations across a combined dataset of 4,594 polymers.
     \item A genetic algorithm-based inverse design pipeline with SA Score
     \citep{ertl_sa_score_2009} filtering for synthetic accessibility.
 \end{enumerate}
@@ -73,15 +74,17 @@ In this work, we present \textbf{Polyinverse}, addressing both problems:
 \noindent\textbf{Why Genetic Algorithm over VAE/Diffusion?}
 Recent generative approaches (VAE, Diffusion) require large labeled datasets
 (often $>10^5$ samples) for stable training. Given the inherent scarcity of
-labeled polymer data (1,526 density samples in our dataset), we chose a
+labeled polymer data (2,622 density samples in our combined dataset), we chose a
 genetic algorithm that operates directly on existing polymer SMILES without
 requiring a separate generative model. This data-efficient approach is more
 appropriate for the small-data regime common in polymer informatics.
 
 \noindent Our key contributions are:
 \begin{itemize}
-    \item Multi-task GNN achieving $R^2=0.757$ for polymer density using
-    only open, publicly available data
+    \item Multi-task GNN achieving $R^2=0.803$ for polymer density by combining
+    three open, publicly available datasets (4,594 unique polymers)
+    \item Extension to three-property prediction (Density + Tc + Tg) with
+    masked multi-task loss handling missing property values
     \item Statistical analysis showing Density-Tc correlation ($r=-0.246$)
     explains multi-task learning gains
     \item First integration of SA Score constraints in polymer inverse design
@@ -121,28 +124,30 @@ only open experimental data and enforcing SA Score filtering.
 
 \subsection{Dataset}
 
-We use the NeurIPS 2025 Open Polymer Challenge dataset \citep{neurips_opc_2025}
-containing 3,502 polymer structures with up to five measured properties.
-Table~\ref{tab:dataset} summarizes the data distribution.
+We construct a unified polymer dataset by combining three publicly available sources:
+(1) the NeurIPS 2025 Open Polymer Challenge dataset \citep{neurips_opc_2025} containing
+3,502 polymer structures, (2) the Extended Polymer Dataset with 1,088 structures,
+and (3) the TG-Density Excerpt with 194 structures. After canonicalizing SMILES
+representations using RDKit and removing duplicates, the combined corpus contains
+4,594 unique polymer structures. Table~\ref{tab:dataset} summarizes the data distribution.
 
 \begin{table}[h]
 \centering
-\caption{Dataset statistics from NeurIPS 2025 Open Polymer Challenge}
+\caption{Combined dataset statistics (after deduplication)}
 \label{tab:dataset}
 \begin{tabular}{lcccc}
 \toprule
 Property & Samples & Min & Max & Mean \\
 \midrule
-Density (g/ml) & 1,526 & 0.135 & 1.733 & 1.082 \\
-Tc (normalized) & 1,404 & 0.025 & 0.954 & 0.247 \\
-Both & 1,392 & \multicolumn{3}{c}{39.7\% of total dataset} \\
+Density (g/ml) & 2,622 & 0.135 & 1.733 & 1.082 \\
+Tc (normalized) & 2,452 & 0.025 & 0.954 & 0.247 \\
+Tg (°C)        &   368 & -138.8 & 484.7 & 151.8 \\
 \bottomrule
 \end{tabular}
 \end{table}
 
-\noindent\textbf{Note on Tc values:} The Tc values in the NeurIPS 2025 dataset
-are provided in a normalized scale $[0, 1]$ rather than absolute temperature
-units (K or °C). All reported Tc metrics are in this normalized scale.
+\noindent\textbf{Note on Tc values:} The Tc values are provided in a normalized
+scale $[0, 1]$. All reported Tc metrics are in this normalized scale.
 Denormalized MAE is 0.0028 (original unit).
 
 Polymer structures are represented as SMILES strings with repeat unit notation,
@@ -179,23 +184,25 @@ mean and max global pooling to obtain a fixed-size molecular embedding $\mathbf{
 \end{equation}
 
 The shared embedding passes through a fully-connected layer before
-task-specific prediction heads for density and Tc:
+task-specific prediction heads for all three properties:
 
 \begin{equation}
-\hat{y}_{\text{density}}, \hat{y}_{T_c} = f_{\text{density}}(\mathbf{h}),\; f_{T_c}(\mathbf{h})
+\hat{y}_{\text{density}}, \hat{y}_{T_c}, \hat{y}_{T_g} = 
+f_{\text{density}}(\mathbf{h}),\; f_{T_c}(\mathbf{h}),\; f_{T_g}(\mathbf{h})
 \end{equation}
 
 \noindent\textbf{Training.}
-Both target properties are z-score normalized before training.
+All target properties are z-score normalized before training.
 Training uses masked MSE loss to handle missing property values:
 
 \begin{equation}
 \mathcal{L} = \frac{1}{|M_d|}\sum_{i \in M_d}(\hat{y}^i_d - y^i_d)^2 +
-              \frac{1}{|M_t|}\sum_{i \in M_t}(\hat{y}^i_t - y^i_t)^2
+              \frac{1}{|M_t|}\sum_{i \in M_t}(\hat{y}^i_t - y^i_t)^2 +
+              \frac{1}{|M_g|}\sum_{i \in M_g}(\hat{y}^i_g - y^i_g)^2
 \end{equation}
 
-where $M_d$ and $M_t$ are the index sets of samples with observed
-density and Tc, respectively.
+where $M_d$, $M_t$, and $M_g$ are the index sets of samples with observed
+density, Tc, and Tg values, respectively.
 The model is trained for 500 epochs using Adam optimizer
 (lr=$10^{-3}$, weight decay=$10^{-5}$) with ReduceLROnPlateau scheduling.
 
@@ -233,16 +240,19 @@ Only candidates satisfying $\text{SA}(s) \leq 4.0$ are accepted as final results
 \begin{figure}[h]
 \centering
 \includegraphics[width=\textwidth]{paper_figures/fig1_data_analysis.png}
-\caption{Dataset analysis. (Left) Density distribution (n=1,526, mean=1.082 g/ml). (Center) Tc distribution in normalized scale (n=1,404). (Right) Density-Tc correlation scatter plot ($r=-0.246$, $p=1.07\times10^{-20}$, n=1,392).}
+\caption{Dataset analysis. (Left) Density distribution (n=2,622, mean=1.082 g/ml). 
+(Center) Tc distribution in normalized scale (n=2,452). 
+(Right) Density-Tc correlation scatter plot ($r=-0.246$, $p=1.07\times10^{-20}$).}
 \label{fig:data}
 \end{figure}
+
 \section{Results}
 
 \subsection{Why Multi-task Learning Works: Density-Tc Correlation}
 
 Before presenting prediction results, we analyze the physical basis for
 multi-task learning gains. Figure~\ref{fig:data} shows the relationship
-between density and Tc across 1,392 polymers with both measurements.
+between density and Tc across polymers with both measurements.
 The Pearson correlation coefficient $r = -0.246$ ($p = 1.07 \times 10^{-20}$)
 indicates a statistically significant negative correlation: denser polymers
 tend to have lower crystallization temperatures. This physical relationship
@@ -256,10 +266,11 @@ All models use an 80/20 train-test split with random seed 42.
 
 \begin{figure}[h]
 \centering
-\includegraphics[width=\textwidth]{paper_figures/fig2_prediction_results.png}
-\caption{Multi-task GNN prediction results on test set. 
-(Left) Density prediction ($R^2=0.757$, MAE$=0.0294$ g/ml). 
-(Right) Tc prediction ($R^2=0.512$, MAE$=0.0364$ normalized).}
+\includegraphics[width=\textwidth]{paper_figures/combined_results.png}
+\caption{Multi-task GNN prediction results on test set (combined dataset). 
+(Left) Density ($R^2=0.803$, MAE$=0.0336$ g/ml). 
+(Center) Tc ($R^2=0.681$, MAE$=0.0262$ normalized).
+(Right) Tg ($R^2=0.373$, MAE$=68.43$ °C).}
 \label{fig:prediction}
 \end{figure}
 
@@ -267,23 +278,26 @@ All models use an 80/20 train-test split with random seed 42.
 \centering
 \caption{Polymer property prediction performance comparison}
 \label{tab:results}
-\begin{tabular}{lcccc}
+\begin{tabular}{lccccc}
 \toprule
-Model & Density $R^2$ & Density MAE (g/ml) & Tc $R^2$ & Tc MAE (norm.) \\
+Model & Density $R^2$ & Density MAE & Tc $R^2$ & Tc MAE & Tg $R^2$ \\
 \midrule
-Random Forest (9 feat.) & 0.388 & 0.0622 & -- & -- \\
-XGBoost (217 feat.) & 0.595 & 0.0402 & -- & -- \\
-Single-task GNN & 0.595 & 0.0364 & -- & -- \\
-\textbf{Multi-task GNN (ours)} & \textbf{0.757} & \textbf{0.0294} & \textbf{0.512} & \textbf{0.0364} \\
+Random Forest (9 feat.)  & 0.388 & 0.0622 & --    & --     & -- \\
+XGBoost (217 feat.)      & 0.595 & 0.0402 & --    & --     & -- \\
+Single-task GNN          & 0.595 & 0.0364 & --    & --     & -- \\
+Multi-task GNN (NeurIPS only) & 0.757 & 0.0294 & 0.512 & 0.0364 & 0.321 \\
+\textbf{Multi-task GNN (ours)} & \textbf{0.803} & \textbf{0.0336} & \textbf{0.681} & \textbf{0.0262} & \textbf{0.373} \\
 \bottomrule
 \end{tabular}
 \end{table}
 
-Multi-task learning provides a 27\% improvement in $R^2$ over single-task GNN
-($0.595 \rightarrow 0.757$), demonstrating that the negative Density-Tc correlation
-($r = -0.246$) provides meaningful complementary signals during joint training.
-The Tc MAE of 0.0364 in normalized scale corresponds to 0.0028 in
-the original normalized units ($\sigma_{Tc} = 0.0780$).
+Multi-task learning with the combined dataset provides a 35\% improvement
+in $R^2$ over single-task GNN ($0.595 \rightarrow 0.803$).
+Notably, expanding the dataset from 1,526 to 2,622 density samples further
+improves performance ($0.757 \rightarrow 0.803$), confirming that data
+quantity is a primary bottleneck in polymer property prediction.
+The Tc $R^2$ improves substantially from 0.512 to 0.681 with the larger dataset,
+while Tg prediction ($R^2=0.373$) remains limited by the smaller sample size (368 samples).
 
 \subsection{Inverse Design with SA Score Filter}
 
@@ -314,15 +328,16 @@ commercially relevant polymer classes.
 \section{Conclusion}
 
 We presented Polyinverse, a framework for polymer property prediction
-and inverse design using only publicly available data.
-Our multi-task GNN achieves $R^2 = 0.757$ for density prediction,
-outperforming single-task baselines by 27\%, supported by the
-statistically significant negative Density-Tc correlation.
-The SA Score-guided genetic algorithm produces synthesizable polymer
+and inverse design using publicly available data.
+Our multi-task GNN achieves $R^2 = 0.803$ for density prediction by combining
+three open datasets (4,594 unique polymers), outperforming single-task baselines
+by 35\% and demonstrating that data quantity is a primary bottleneck.
+The model simultaneously predicts Tc ($R^2=0.681$) and Tg ($R^2=0.373$),
+and the SA Score-guided genetic algorithm produces synthesizable polymer
 candidates with target density errors below 0.01 g/ml.
 
 \noindent\textbf{Limitations.}
-The model is limited by training data size (1,526 density samples).
+Tg prediction remains limited by training data size (368 samples).
 The SA Score was not designed for polymeric repeat units; future work
 should incorporate polymerizability-specific metrics.
 Current inverse design targets only density; extending to
@@ -333,9 +348,9 @@ is a key direction for practical industrial applications.
 We plan to (1) incorporate larger polymer databases (PolyInfo, PI1M)
 to improve prediction accuracy toward $R^2 > 0.85$,
 (2) extend inverse design to multi-objective property constraints,
-and (3) explore diffusion model-based molecular generation as a
-complement to the genetic algorithm approach for larger-data regimes,
-and (4) incorporate a rule-based polymerizability filter to ensure
+(3) explore diffusion model-based molecular generation as a
+complement to the genetic algorithm approach for larger-data regimes, and
+(4) incorporate a rule-based polymerizability filter to ensure
 candidate repeat units possess reactive end groups capable of
 chain-growth or step-growth polymerization, moving beyond SA Score
 toward polymer-specific synthesizability assessment.
