@@ -8,3 +8,4 @@
 texput.log
 *.code-workspace
 code paper_draft_v2.tex
+polymer_data/PI1M_v2.csv
