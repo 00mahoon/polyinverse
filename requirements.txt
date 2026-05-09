@@ -2,7 +2,9 @@ torch
 torch-geometric
 rdkit
 gradio
+huggingface_hub
 pandas
 numpy
-scikit-learn
 matplotlib
+Pillow
+scikit-learn
