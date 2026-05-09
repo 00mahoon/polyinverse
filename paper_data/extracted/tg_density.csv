@@ -1,0 +1,195 @@
+abr,name,SMILES,grade,manufacturer,Tg,Density
+Matrimid,"5(6)-amino-1-(4'-aminophenyl)-1,3,-trimethylindane",*c1ccc2c(c1)C(C)(CC2(C)C)c1ccc(cc1)N3C(=O)c4ccc(cc4C3=O)C(=O)c5ccc(C6=O)c(c5)C(=O)N6*,Matrimid 5218,Huntsman Advanced Materials,593.0,1.238
+PMMA,poly(methyl methacrylate),*C(C)(C(=O)OC)C*,atactic PMMA,Sumitomo Chemical Co,375.0,1.163
+PMMA,poly(methyl methacrylate),*C(C)(C(=O)OC)C*,,CYRO Industries,376.0,1.19
+PMMA,poly(methyl methacrylate),*C(C)(C(=O)OC)C*,,Maagtechnik,378.0,1.17
+PMMA,poly(methyl methacrylate),*C(C)(C(=O)OC)C*,PMMA Cat.:182230,Aldrich,378.0,1.18
+PMMA,poly(methyl methacrylate),*C(C)(C(=O)OC)C*,Plexiglas V811,Rohm and Haas,378.0,1.188
+PMMA,poly(methyl methacrylate),*C(C)(C(=O)OC)C*,,Lab synth polymer,386.0,1.199
+PMMA,poly(methyl methacrylate),*C(C)(C(=O)OC)C*,,Tabriz petrochemical,391.0,1.18
+PMMA,poly(methyl methacrylate),*C(C)(C(=O)OC)C*,,"Aldrich Chemical Co., Milwaukee, WI",392.0,1.18
+PMMA,poly(methyl methacrylate),*C(C)(C(=O)OC)C*,,Aldrich,395.0,1.18
+PS,polystyrene,*CC(c1ccccc1)*,,Nakari Chemical Ltd,357.0,1.0
+PS,polystyrene,*CC(c1ccccc1)*,Injection Molding Grade Polystyrene,,363.0,1.0
+PS,polystyrene,*CC(c1ccccc1)*,Trycite 8001,Dow Chemical Company,366.0,1.03
+PS,polystyrene,*CC(c1ccccc1)*,Styron 690,Dow Chemical Company,369.0,1.048
+PS,polystyrene,*CC(c1ccccc1)*,,Tabriz petrochemical,370.0,1.0
+PS,polystyrene,*CC(c1ccccc1)*,,Scientific Polymer Products,373.0,1.0
+PS,polystyrene,*CC(c1ccccc1)*,,,373.0,1.05
+PS,polystyrene,*CC(c1ccccc1)*,,Mitsui Toatsu Chemicals (Yokohama),373.6,1.0
+PS,polystyrene,*CC(c1ccccc1)*,Cristal Polidux H.F. 55,Monsanto Iberica SA,373.9,1.05
+PS,polystyrene,*CC(c1ccccc1)*,,Scientific Polymer Products,374.0,1.0
+PS,polystyrene,*CC(c1ccccc1)*,,Lab synth polymer,374.2,1.038
+PS,polystyrene,*CC(c1ccccc1)*,,Mitsubishi Chemical,375.0,1.0
+PS,polystyrene,*CC(c1ccccc1)*,Prod 29789,BDH,375.0,1.038
+PS,polystyrene,*CC(c1ccccc1)*,atactic PS,"Versalis S.p.A., Mantua, Italy",375.0,1.04
+PS,polystyrene,*CC(c1ccccc1)*,,Sigma-Aldrich,376.0,1.056
+PS,polystyrene,*CC(c1ccccc1)*,,"Polyscience, Inc.",376.2,1.05
+PS,polystyrene,*CC(c1ccccc1)*,Lacqrene 1450N,ATOFINA France,378.0,1.0
+PS,polystyrene,*CC(c1ccccc1)*,,Aldrich Chemical,378.0,1.0
+PS,polystyrene,*CC(c1ccccc1)*,,Taihua Polystyrene Co. Ltd.,378.0,1.04
+PS,polystyrene,*CC(c1ccccc1)*,,Gefinex,378.0,1.04
+PS,polystyrene,*CC(c1ccccc1)*,,Lab synth polymer,378.0,1.05
+PS,polystyrene,*CC(c1ccccc1)*,Koplen 0513F,Synthos Kralupy,379.0,1.012
+PS,polystyrene,*CC(c1ccccc1)*,,Lab synth polymer,381.0,1.048
+PSU,"polysulfone, poly(bisphenol-A sulfone)",*c1ccc(cc1)C(C)(C)c2ccc(cc2)Oc3ccc(cc3)S(=O)(=O)c4ccc(cc4)O*,Udel P1700NT,Solvay,453.0,1.24
+PSU,"polysulfone, poly(bisphenol-A sulfone)",*c1ccc(cc1)C(C)(C)c2ccc(cc2)Oc3ccc(cc3)S(=O)(=O)c4ccc(cc4)O*,,Nissan Chemical Industries Ltd.,455.0,1.24
+PSU,"polysulfone, poly(bisphenol-A sulfone)",*c1ccc(cc1)C(C)(C)c2ccc(cc2)Oc3ccc(cc3)S(=O)(=O)c4ccc(cc4)O*,Udel P 1700 NT 11,"Amoco, Ridgefield, CT",458.0,1.24
+PSU,"polysulfone, poly(bisphenol-A sulfone)",*c1ccc(cc1)C(C)(C)c2ccc(cc2)Oc3ccc(cc3)S(=O)(=O)c4ccc(cc4)O*,,Lab synth polymer,459.0,1.24
+PSU,"polysulfone, poly(bisphenol-A sulfone)",*c1ccc(cc1)C(C)(C)c2ccc(cc2)Oc3ccc(cc3)S(=O)(=O)c4ccc(cc4)O*,P-1700,Union Carbide,459.0,1.24
+PSU,"polysulfone, poly(bisphenol-A sulfone)",*c1ccc(cc1)C(C)(C)c2ccc(cc2)Oc3ccc(cc3)S(=O)(=O)c4ccc(cc4)O*,,Sigma-Aldrich,463.0,1.18
+PSU,"polysulfone, poly(bisphenol-A sulfone)",*c1ccc(cc1)C(C)(C)c2ccc(cc2)Oc3ccc(cc3)S(=O)(=O)c4ccc(cc4)O*,Ultrason S,BASF AG,463.0,1.24
+PPE,"poly(2,6-dimethyl-1,4-phenylene ether)",*c1cc(C)c(c(C)c1)O*,,Asahi Chemicals Inc. (Kawasaki),477.0,1.06
+PPE,"poly(2,6-dimethyl-1,4-phenylene ether)",*c1cc(C)c(c(C)c1)O*,,General Electric Co.,482.0,1.06
+PPE,"poly(2,6-dimethyl-1,4-phenylene ether)",*c1cc(C)c(c(C)c1)O*,Ultra High P6130,Sabic,483.0,1.068
+PVAc,poly(vinyl acetate),*CC(OC(=O)C)*,,Lab synth polymer,303.0,1.19
+PVAc,poly(vinyl acetate),*CC(OC(=O)C)*,,Nippon Synthetic Chemical Industry Co.,303.0,1.19
+PVAc,poly(vinyl acetate),*CC(OC(=O)C)*,,Aldrich Chemical Co.,303.2,1.19
+PVAc,poly(vinyl acetate),*CC(OC(=O)C)*,,Cellomer Associates,303.2,1.19
+PVAc,poly(vinyl acetate),*CC(OC(=O)C)*,,"Polysciences, Inc.",303.2,1.19
+PVAc,poly(vinyl acetate),*CC(OC(=O)C)*,,Aldrich,305.0,1.19
+PEI,"Polyether-imide poly(bisphenol-A-co-4-nitrophthalicanhydride-co-1,3-phenylenediamine)",*c1ccc(cc1)C(C)(C)c2ccc(cc2)Oc3ccc(c4c3)C(=O)N(C4(=O))c5cccc(c5)N(C(=O)c6cc7)C(=O)c6cc7O*,,Sigma–Aldrich (USA),479.0,1.27
+PEI,"Polyether-imide poly(bisphenol-A-co-4-nitrophthalicanhydride-co-1,3-phenylenediamine)",*c1ccc(cc1)C(C)(C)c2ccc(cc2)Oc3ccc(c4c3)C(=O)N(C4(=O))c5cccc(c5)N(C(=O)c6cc7)C(=O)c6cc7O*,,Goodfellow Co,489.0,1.268
+PEI,"Polyether-imide poly(bisphenol-A-co-4-nitrophthalicanhydride-co-1,3-phenylenediamine)",*c1ccc(cc1)C(C)(C)c2ccc(cc2)Oc3ccc(c4c3)C(=O)N(C4(=O))c5cccc(c5)N(C(=O)c6cc7)C(=O)c6cc7O*,Ultem 1000,"SABIC Co. (Riyadh, Saudi Arabia)",490.0,1.242
+PEI,"Polyether-imide poly(bisphenol-A-co-4-nitrophthalicanhydride-co-1,3-phenylenediamine)",*c1ccc(cc1)C(C)(C)c2ccc(cc2)Oc3ccc(c4c3)C(=O)N(C4(=O))c5cccc(c5)N(C(=O)c6cc7)C(=O)c6cc7O*,,Goodfellow Co.,490.0,1.268
+PTMSN,poly(trimethyl silyl norbornene),*C1[C@@H]2CC([Si](C)(C)C)[C@@H](C2)C1*,,Lab synth polymer,620.0,0.883
+PI,polyisoprene,*CC=C(C)C*,,Aldrich Chemical Co.,202.2,0.91
+PDMS,polydimethylsiloxane,*[Si](C)(C)O*,,"Petrarch Systems, Inc",146.0,0.965
+PDMS,polydimethylsiloxane,*[Si](C)(C)O*,,Polymer Source Inc.,146.0,0.965
+PDMS,polydimethylsiloxane,*[Si](C)(C)O*,Baysilone M100000,GE Bayer,146.0,0.97
+PEMA,poly(ethyl methacrylate),*C(C)(C(=O)OCC)C*,,Lab synth polymer,334.0,1.12
+PEMA,poly(ethyl methacrylate),*C(C)(C(=O)OCC)C*,,"Aldrich Chemical Co., Milwaukee, WI",344.0,1.119
+PTMSP ,poly(trimethylsilyl)propyne,*C(C)=C([Si](C)(C)C)*,,Lab synth polymer,503.0,0.74
+PTMSP ,poly(trimethylsilyl)propyne,*C(C)=C([Si](C)(C)C)*,,"Permea, Inc. (St. Louis, MO)",503.0,0.75
+PTMSP ,poly(trimethylsilyl)propyne,*C(C)=C([Si](C)(C)C)*,,ABCR GmbH,503.0,0.77
+PTMSP ,poly(trimethylsilyl)propyne,*C(C)=C([Si](C)(C)C)*,,Fluorochem Ltd,503.0,0.77
+PTMSP ,poly(trimethylsilyl)propyne,*C(C)=C([Si](C)(C)C)*,,Gelest,503.0,0.77
+PTMSP ,poly(trimethylsilyl)propyne,*C(C)=C([Si](C)(C)C)*,,"Air Products and Chemicals, Inc. of Allentown, PA",503.0,0.78
+PTMSP ,poly(trimethylsilyl)propyne,*C(C)=C([Si](C)(C)C)*,,"Sanyo Chemical Industries of Kyoto, Japan",503.0,0.938
+PTMSP ,poly(trimethylsilyl)propyne,*C(C)=C([Si](C)(C)C)*,,Lab synth polymer,503.15,0.75
+PAS,poly(p-acetoxystyrene),*CC(c1ccc(cc1)OC(=O)C)*,,Celanese Chemical Co.,399.0,1.168
+PpOMS,poly(p-methoxystyrene),*CC(c1ccc(cc1)OC)*,,Univ. Arizona,378.0,1.118
+PBMA,poly(butyl methacrylate),*C(C)(C(=O)OCCCC)C*,,Aldrich Chemical Co.,288.2,1.07
+PBMA,poly(butyl methacrylate),*C(C)(C(=O)OCCCC)C*,,"Polysciences, Inc.",288.2,1.07
+PBMA,poly(butyl methacrylate),*C(C)(C(=O)OCCCC)C*,,Scientific Polymer Products,293.0,1.055
+PBMA,poly(butyl methacrylate),*C(C)(C(=O)OCCCC)C*,,Scientific Polymer Products,300.0,1.06
+PnPMA,poly(n-pentyl methacrylate),*C(C)(C(=O)OCCCCC)C*,,Lab synth polymer,276.0,1.03
+PTFS,poly(trifluoro styrene),*C(F)(F)C(c1ccccc1)(F)*,,"Shanghai Huayi 3F New Materials Co., Ltd",529.0,1.41
+PMMD,"poly(4-methyl-2-methylene-1,3-dioxolane)",*CC1(OC(C)CO1)*,,Lab synth polymer,321.0,1.264
+PTiPrOSN,poly(5-triisopropoxysilyl-2-norbornene),*C1[C@@H]2CC([Si](OC(C)C)(OC(C)C)OC(C)C)[C@@H](C2)C1*,,Lab synth polymer,617.0,0.98
+PTPrOSN,poly(5-tripropoxysilyl-2-norbornene),*C1[C@@H]2CC([Si](OCCC)(OCCC)OCCC)[C@@H](C2)C1*,,Lab synth polymer,591.0,1.04
+PTEtOSN,poly(5-triethoxysilyl-2-norbornene),*C1[C@@H]2CC([Si](OCC)(OCC)OCC)[C@@H](C2)C1*,,Lab synth polymer,598.0,1.088
+PTEtOSN,poly(5-triethoxysilyl-2-norbornene),*C1[C@@H]2CC([Si](OCC)(OCC)OCC)[C@@H](C2)C1*,,Lab synth polymer,611.0,1.088
+PTMeOSN,poly(5-trimethoxysilyl-2-norbornene),*C1[C@@H]2CC([Si](OC)(OC)OC)[C@@H](C2)C1*,,Lab synth polymer,638.0,1.111
+PMeTMeOSN,poly(5-methyltrimethoxysilyl-2-norbornene),*C1[C@@H]2CC(C[Si](OC)(OC)OC)[C@@H](C2)C1*,,Lab synth polymer,592.0,1.159
+PEtTMeOSN,poly(5-ethyltrimethoxysilyl-2-norbornene),*C1[C@@H]2CC(CC[Si](OC)(OC)OC)[C@@H](C2)C1*,,Lab synth polymer,543.0,1.129
+PEtTMeOEtOSN,poly(5-tris(2-methoxyethoxy)-2-norbornene),*C1[C@@H]2CC([Si](OCCOC)(OCCOC)OCCOC)[C@@H](C2)C1*,,Lab synth polymer,580.0,1.155
+PES,"polyethersulfone, poly(oxy-1,4-phenylenesulfonyl-1,4-phenylene)",*c1ccc(cc1)S(=O)(=O)c2ccc(cc2)O*,Veradel A-200NT,Solvay,493.0,1.37
+PES,"polyethersulfone, poly(oxy-1,4-phenylenesulfonyl-1,4-phenylene)",*c1ccc(cc1)S(=O)(=O)c2ccc(cc2)O*,Ultrason E6020P,BASF,503.0,1.326
+PEGE,poly(ethyl glycidyl ether),*CC(COCC)O*,,Lab synth polymer,209.0,1.046
+PiPGE,poly(iso-propyl glycidil ether),*CC(COC(C)C)O*,,Lab synth polymer,208.0,0.999
+PAGE,poly(allyl glycidil ether),*CC(COCC=C)O*,,Lab synth polymer,194.0,1.08
+PnBGE,poly(n-butyl glycidyl ether),*CC(COCCCC)O*,,Lab synth polymer,194.0,0.987
+PEVE,poly(ethyl vinyl ether),*CC(OCC)*,,Lab synth polymer,213.0,0.959
+PEF,poly(ethylene furanoate),*CCOC(=O)c1ccc(o1)C(=O)O*,,The Coca-Cola Company,356.0,1.4299
+6FDA-TrMPD,6FDA-DAM,*N1C(=O)c2ccc(cc2C1=O)C(C(F)(F)F)(C(F)(F)F)c3ccc(C4=O)c(c3)C(=O)N4c5c(C)c(c(C)cc5(C))*,,Lab synth polymer,649.0,1.34
+6FDA-TrMPD,6FDA-DAM,*N1C(=O)c2ccc(cc2C1=O)C(C(F)(F)F)(C(F)(F)F)c3ccc(C4=O)c(c3)C(=O)N4c5c(C)c(c(C)cc5(C))*,,Lab synth polymer,650.0,1.352
+6FDA-TrMPD,6FDA-DAM,*N1C(=O)c2ccc(cc2C1=O)C(C(F)(F)F)(C(F)(F)F)c3ccc(C4=O)c(c3)C(=O)N4c5c(C)c(c(C)cc5(C))*,,Lab synth polymer,668.0,1.35
+6FDA-TrMPD,6FDA-DAM,*N1C(=O)c2ccc(cc2C1=O)C(C(F)(F)F)(C(F)(F)F)c3ccc(C4=O)c(c3)C(=O)N4c5c(C)c(c(C)cc5(C))*,,Lab synth polymer,670.0,1.24
+6FDA-TrMPD,6FDA-DAM,*N1C(=O)c2ccc(cc2C1=O)C(C(F)(F)F)(C(F)(F)F)c3ccc(C4=O)c(c3)C(=O)N4c5c(C)c(c(C)cc5(C))*,,Lab synth polymer,670.0,1.33
+6FDA-TrMCA,,*N1C(=O)c2ccc(cc2C1=O)C(C(F)(F)F)(C(F)(F)F)c3ccc(C4=O)c(c3)C(=O)N4c5c(C)c(c(C)c(C(=O)O)c5(C))*,,Lab synth polymer,670.0,1.31
+6FDA-TrMSA,,*N1C(=O)c2ccc(cc2C1=O)C(C(F)(F)F)(C(F)(F)F)c3ccc(C4=O)c(c3)C(=O)N4c5c(C)c(c(C)c(S(=O)(=O)O)c5(C))*,,Lab synth polymer,670.0,1.41
+PIB,polyisobutylene,*C(C)(C)C*,,Lab synth polymer,197.2,0.913
+PIB,polyisobutylene,*C(C)(C)C*,,Aldrich Chemical Co.,197.2,0.92
+6FDA-6FpDA,,*N1C(=O)c2ccc(cc2C1=O)C(C(F)(F)F)(C(F)(F)F)c3ccc(C4=O)c(c3)C(=O)N4c5ccc(cc5)C(C(F)(F)F)(C(F)(F)F)c6ccc(cc6)*,,Lab synth polymer,573.0,1.474
+6FDA-6FpDA,,*N1C(=O)c2ccc(cc2C1=O)C(C(F)(F)F)(C(F)(F)F)c3ccc(C4=O)c(c3)C(=O)N4c5ccc(cc5)C(C(F)(F)F)(C(F)(F)F)c6ccc(cc6)*,,Lab synth polymer,578.0,1.48
+6FDA-6FpDA,,*N1C(=O)c2ccc(cc2C1=O)C(C(F)(F)F)(C(F)(F)F)c3ccc(C4=O)c(c3)C(=O)N4c5ccc(cc5)C(C(F)(F)F)(C(F)(F)F)c6ccc(cc6)*,,Lab synth polymer,588.0,1.61
+6FDA-6FpDA,,*N1C(=O)c2ccc(cc2C1=O)C(C(F)(F)F)(C(F)(F)F)c3ccc(C4=O)c(c3)C(=O)N4c5ccc(cc5)C(C(F)(F)F)(C(F)(F)F)c6ccc(cc6)*,,Lab synth polymer,590.0,1.474
+6FDA-6FpDA,,*N1C(=O)c2ccc(cc2C1=O)C(C(F)(F)F)(C(F)(F)F)c3ccc(C4=O)c(c3)C(=O)N4c5ccc(cc5)C(C(F)(F)F)(C(F)(F)F)c6ccc(cc6)*,,Hoechst Celanese Corporation,591.0,1.466
+6FDA-6FpDA,,*N1C(=O)c2ccc(cc2C1=O)C(C(F)(F)F)(C(F)(F)F)c3ccc(C4=O)c(c3)C(=O)N4c5ccc(cc5)C(C(F)(F)F)(C(F)(F)F)c6ccc(cc6)*,,Lab synth polymer,593.0,1.448
+PBzMA,poly(benzyl methacrylate),*C(C)(C(=O)OCc1ccccc1)C*,,Aldrich,327.0,1.179
+6FDA-MPD,,*N1C(=O)c2ccc(cc2C1=O)C(C(F)(F)F)(C(F)(F)F)c3ccc(C4=O)c(c3)C(=O)N4c5cc(ccc5)*,,Lab synth polymer,548.0,1.478
+6FDA-MPD,,*N1C(=O)c2ccc(cc2C1=O)C(C(F)(F)F)(C(F)(F)F)c3ccc(C4=O)c(c3)C(=O)N4c5cc(ccc5)*,,Lab synth polymer,558.0,1.471
+6FDA-MPD,,*N1C(=O)c2ccc(cc2C1=O)C(C(F)(F)F)(C(F)(F)F)c3ccc(C4=O)c(c3)C(=O)N4c5cc(ccc5)*,,Lab synth polymer,574.0,1.4648
+6FDA-TMPPD,,*N1C(=O)c2ccc(cc2C1=O)C(C(F)(F)F)(C(F)(F)F)c3ccc(C4=O)c(c3)C(=O)N4c5c(C)c(C)c(c(C)c5(C))*,,Lab synth polymer,679.0,1.325
+6FDA-TMPPD,,*N1C(=O)c2ccc(cc2C1=O)C(C(F)(F)F)(C(F)(F)F)c3ccc(C4=O)c(c3)C(=O)N4c5c(C)c(C)c(c(C)c5(C))*,,Lab synth polymer,686.0,1.325
+6FDA-TMPPD,,*N1C(=O)c2ccc(cc2C1=O)C(C(F)(F)F)(C(F)(F)F)c3ccc(C4=O)c(c3)C(=O)N4c5c(C)c(C)c(c(C)c5(C))*,,Lab synth polymer,693.0,1.33
+6FDA-TMPPD,,*N1C(=O)c2ccc(cc2C1=O)C(C(F)(F)F)(C(F)(F)F)c3ccc(C4=O)c(c3)C(=O)N4c5c(C)c(C)c(c(C)c5(C))*,,Lab synth polymer,695.0,1.328
+6FDA-TMPPD,,*N1C(=O)c2ccc(cc2C1=O)C(C(F)(F)F)(C(F)(F)F)c3ccc(C4=O)c(c3)C(=O)N4c5c(C)c(C)c(c(C)c5(C))*,,Lab synth polymer,697.0,1.3275
+6FDA-4`4-DPE,,*N1C(=O)c2ccc(cc2C1=O)C(C(F)(F)F)(C(F)(F)F)c3ccc(C4=O)c(c3)C(=O)N4c5ccc(cc5)Oc6ccc(cc6)*,,Lab synth polymer,560.0,1.432
+6FDA-4`4-DPE,,*N1C(=O)c2ccc(cc2C1=O)C(C(F)(F)F)(C(F)(F)F)c3ccc(C4=O)c(c3)C(=O)N4c5ccc(cc5)Oc6ccc(cc6)*,,Lab synth polymer,564.0,1.434
+6FDA-4`4-DPE,,*N1C(=O)c2ccc(cc2C1=O)C(C(F)(F)F)(C(F)(F)F)c3ccc(C4=O)c(c3)C(=O)N4c5ccc(cc5)Oc6ccc(cc6)*,,Lab synth polymers,572.0,1.432
+6FDA-4`4-DPE,,*N1C(=O)c2ccc(cc2C1=O)C(C(F)(F)F)(C(F)(F)F)c3ccc(C4=O)c(c3)C(=O)N4c5ccc(cc5)Oc6ccc(cc6)*,,Lab synth polymer,573.0,1.432
+6FDA-4`4-DPE,,*N1C(=O)c2ccc(cc2C1=O)C(C(F)(F)F)(C(F)(F)F)c3ccc(C4=O)c(c3)C(=O)N4c5ccc(cc5)Oc6ccc(cc6)*,,Lab synth polymer,577.0,1.432
+6FDA-PPD,,*N1C(=O)c2ccc(cc2C1=O)C(C(F)(F)F)(C(F)(F)F)c3ccc(C4=O)c(c3)C(=O)N4c5ccc(cc5)*,,Lab synth polymer,584.0,1.469
+6FDA-PPD,,*N1C(=O)c2ccc(cc2C1=O)C(C(F)(F)F)(C(F)(F)F)c3ccc(C4=O)c(c3)C(=O)N4c5ccc(cc5)*,,Lab synth polymer,623.0,1.462
+6FDA-PPD,,*N1C(=O)c2ccc(cc2C1=O)C(C(F)(F)F)(C(F)(F)F)c3ccc(C4=O)c(c3)C(=O)N4c5ccc(cc5)*,,Lab synth polymer,624.0,1.473
+PVP,poly (N-vinyl-2-pyrrolidone),*C(N1C(=O)CCC1)C*,PVP K25,Sigma-Aldrich,428.0,1.16
+PVP,poly (N-vinyl-2-pyrrolidone),*C(N1C(=O)CCC1)C*,,Scientific Polymer Products,454.0,1.16
+PHEMA,poly (2- hydroxyethylmethacrylate),*C(C)(C(=O)OCCO)C*,,Polysciences,394.0,1.15
+poly(2-MAdMA),poly(2-methyl-2- adamantylmethacrylate),*C(C)(C(=O)OC1(C)C2CC3CC(C2)CC1C3)C*,,Lab synth polymer,414.0,1.134
+poly(2-EAdMA),poly(2-ethyl-2-adamantylmethacrylate),*C(C)(C(=O)OC1(CC)C2CC3CC(C2)CC1C3)C*,,Lab synth polymer,407.0,1.129
+PTCNSi2g,"poly(3,3-bis(trimethylsilyl)tricyclononene-7)",*C1C2C3C([Si](C)(C)C)([Si](C)(C)C)CC3C(C2)C1*,,Lab synth polymer,613.0,0.853
+PPTBPA,poly[1-phenyl-2-(p-tert-butylphenyl)acetylene,*C(c1ccc(C(C)(C)C)cc1)=C(c2ccccc2)*,,Lab synth polymer,457.0,1.035
+mPBI,"poly(2,2'-(m-phenylene)-5,5'-bibenzimidazole)",*c1cccc(c1)c2nc3ccc(cc3[nH]2)c4ccc5[nH]c(nc5c4)*,Celazole S26,"PBI Performance Products, Inc. (Charlotte, SC)",700.0,1.25
+mPBI,"poly(2,2'-(m-phenylene)-5,5'-bibenzimidazole)",*c1cccc(c1)c2nc3ccc(cc3[nH]2)c4ccc5[nH]c(nc5c4)*,Celazole S26,"PBI Performance Products, Inc. (Charlotte, SC)",700.0,1.27
+PVC,poly(vinyl chloride),*C([Cl])C*,,Bemis,311.0,1.3
+PVC,poly(vinyl chloride),*C([Cl])C*,,,343.0,1.4
+PVC,poly(vinyl chloride),*C([Cl])C*,,American Hoechst Co,348.0,1.406
+PVC,poly(vinyl chloride),*C([Cl])C*,SC-16,Kanegafuchi Chemical Industry,355.0,1.3
+PVC,poly(vinyl chloride),*C([Cl])C*,K67,Geon,357.0,1.4
+PVC,poly(vinyl chloride),*C([Cl])C*,,Scientific Polymer Products Inc.,357.0,1.4
+PEA,poly(ethyl acrylate),*C(C(=O)OCC)C*,,Lab synth polymer,250.0,1.1178
+PDA,poly(decyl acrylate),*C(C(=O)OCCCCCCCCCC)C*,,Lab synth polymer,243.0,0.986
+PBA,poly(behenyl acrylate),*C(C(=O)OCCCCCCCCCCCCCCCCCCCCCC)C*,,Lab synth polymer,311.0,0.9752
+BPDA-44DPE,,*N1C(=O)c2ccc(cc2C1=O)c3ccc(C4=O)c(c3)C(=O)N4c5ccc(cc5)Oc6ccc(cc6)*,,Lab synth polymer,543.0,1.366
+BPDA-44DPE,,*N1C(=O)c2ccc(cc2C1=O)c3ccc(C4=O)c(c3)C(=O)N4c5ccc(cc5)Oc6ccc(cc6)*,,Lab synth polymer,558.0,1.37
+BPDA-44DPE,,*N1C(=O)c2ccc(cc2C1=O)c3ccc(C4=O)c(c3)C(=O)N4c5ccc(cc5)Oc6ccc(cc6)*,Upilex,Ube Industries,558.0,1.39
+BPDA-DDS,,*N1C(=O)c2ccc(cc2C1=O)c3ccc(C4=O)c(c3)C(=O)N4c5ccc(cc5)S(=O)(=O)c6ccc(cc6)*,,Lab synth polymer,623.0,1.41
+PMDA-44DPE,,*N1C(=O)c2cc(c3cc2C1=O)C(=O)N(C3(=O))c4ccc(cc4)Oc5ccc(cc5)*,Pyre-ML RK 692,"I.S.T (Indian Orchard, MA, 5 4 Indian)",656.0,1.405
+PMDA-44DPE,,*N1C(=O)c2cc(c3cc2C1=O)C(=O)N(C3(=O))c4ccc(cc4)Oc5ccc(cc5)*,,Lab synth polymer,693.0,1.404
+PMDA-44DPE,,*N1C(=O)c2cc(c3cc2C1=O)C(=O)N(C3(=O))c4ccc(cc4)Oc5ccc(cc5)*,,Lab synth polymer,693.0,1.407
+6FDA-6HPDA,,*N1C(=O)c2ccc(cc2C1=O)C(C(F)(F)F)(C(F)(F)F)c3ccc(C4=O)c(c3)C(=O)N4c5ccc(cc5)C(C)(C)c6ccc(cc6)*,,Lab synth polymer,587.0,1.353
+6FDA-OHB,,*N1C(=O)c2ccc(cc2C1=O)C(C(F)(F)F)(C(F)(F)F)c3ccc(C4=O)c(c3)C(=O)N4c5ccc(cc5)c6ccc(cc6)*,,Lab synth polymer,634.0,1.456
+6FDA-OFB,,*N1C(=O)c2ccc(cc2C1=O)C(C(F)(F)F)(C(F)(F)F)c3ccc(C4=O)c(c3)C(=O)N4c5c([F])c([F])c(c([F])c5([F]))c6c([F])c([F])c(c([F])c6([F]))*,,Lab synth polymer,616.0,1.559
+6FDA-5CMPD,,*N1C(=O)c2ccc(cc2C1=O)C(C(F)(F)F)(C(F)(F)F)c3ccc(C4=O)c(c3)C(=O)N4c5cc(cc([Cl])c5)*,,Lab synth polymer,550.0,1.5
+6FDA-34DPE,,*N1C(=O)c2ccc(cc2C1=O)C(C(F)(F)F)(C(F)(F)F)c3ccc(C4=O)c(c3)C(=O)N4c5ccc(cc5)Oc6cc(ccc6)*,,Lab synth polymer,510.0,1.44
+6FDA-34DPE,,*N1C(=O)c2ccc(cc2C1=O)C(C(F)(F)F)(C(F)(F)F)c3ccc(C4=O)c(c3)C(=O)N4c5ccc(cc5)Oc6cc(ccc6)*,,Lab synth polymer,533.0,1.438
+6FDA-44DDM,,*N1C(=O)c2ccc(cc2C1=O)C(C(F)(F)F)(C(F)(F)F)c3ccc(C4=O)c(c3)C(=O)N4c5ccc(cc5)Cc6ccc(cc6)*,,Lab synth polymer,559.0,1.41
+P[VBTMA][BF4],poly(p-vinylbenzyltrimethyl ammonium tetrafluoroborate),*CC(c1ccc(cc1)C[N+](C)(C)C)*.[B-](F)(F)(F)F,,Lab synth polymer,488.0,
+P[MATMA][BF4],,*CC(C(=O)OCC[N+](C)(C)C)*.[B-](F)(F)(F)F,,Lab synth polymer,458.0,
+P[VBBI][BF4],,*CC(c1ccc(cc1)Cn1c[n+](cc1)CCCC)*.[B-](F)(F)(F)F,,Lab synth polymer,351.0,
+P[MABI][BF4],,*CC(C(=O)OCCn1c[n+](cc1)CCCC)*.[B-](F)(F)(F)F,,Lab synth polymer,327.0,
+P[VBTEA][PF6],,*CC(c1ccc(cc1)C[N+](CC)(CC)CC)*.F[P-](F)(F)(F)(F)F,,Lab synth polymer,490.0,
+PVIm,poly(1-vinylimidazole),*CC(n1cn(cc1))*,,Lab synth polymer,444.0,
+PVIm,poly(1-vinylimidazole),*CC(n1cn(cc1))*,,Lab synth polymer,444.0,
+P[VBIm][BF4],,*CC(n1c[n+](cc1)CCCC)*.[B-](F)(F)(F)F,,Lab synth polymer,362.0,
+P[VBIm][BF4],,*CC(n1c[n+](cc1)CCCC)*.[B-](F)(F)(F)F,,Lab synth polymer,362.0,
+P[VBIm][Br],,*CC(n1c[n+](cc1)CCCC)*.[Br-],,Lab synth polymer,331.0,
+P[VBIm][Br],,*CC(n1c[n+](cc1)CCCC)*.[Br-],,Lab synth polymer,331.0,
+P[VBIm][SCN],,*CC(n1c[n+](cc1)CCCC)*.N#C[S-],,Lab synth polymer,415.0,
+P[VBIm][SCN],,*CC(n1c[n+](cc1)CCCC)*.N#C[S-],,Lab synth polymer,415.0,
+P4VP,poly(4-vinylpyridine),*CC(c1ccncc1)*,P4VP lot no 12338MS,Aldrich,427.0,1.15
+PDMAEMA,poly(2-dimethyl aminoethyl methacrylate),*CC(C)(C(=O)OCCN(C)C)*,,Scientiﬁc Polymer Products,291.0,1.1
+PAA,poly(acrylic acid),*CC(C(=O)O)*,,Aldrich,381.0,1.15
+PVME,poly(vinyl methyl ether),*CC(OC)*,Gantrez 093,GAF Corporation,245.0,1.05
+PNB,poly(norbornene),*C1C(C2)CCC2C1*,,Lab synth polymer,620.0,1.025
+PVB,poly(vinyl benzoate),*CC(OC(=O)c1ccccc1)*,,Lab synth polymer,335.0,1.214
+PVB,poly(vinyl benzoate),*CC(OC(=O)c1ccccc1)*,,Lab synth polymer,338.0,1.214
+TMPSF,"3,3',5,5'-tetramethyl bisphenol-A polysulfone",*Oc1ccc(cc1)S(=O)(=O)c1ccc(cc1)Oc2c(C)cc(cc2(C))C(C)(C)c3cc(C)c(c(C)c3)*,,Lab synth polymer,515.0,1.151
+DMPSF,"3,3'-dimethyl bisphenol-A (bisphenol-C) polysulfone",*Oc1ccc(cc1)S(=O)(=O)c1ccc(cc1)Oc2c(C)cc(cc2)C(C)(C)c3cc(C)c(cc3)*,,Lab synth polymer,470.0,1.213
+DMPSF-Z,"3,3'-dimethylbisphenol-Z polysulfone",*Oc1ccc(cc1)S(=O)(=O)c1ccc(cc1)Oc2c(C)cc(cc2)C3(CCCCC3)c4cc(C)c(cc4)*,,Lab synth polymer,453.0,1.227
+BIPSF,"polyphenylenesulfone, biphenol polysulfone",*Oc1ccc(cc1)S(=O)(=O)c1ccc(cc1)Oc2ccc(cc2)c3ccc(cc3)*,Ultrason P3010,BASF,493.0,1.241
+BIPSF,"polyphenylenesulfone, biphenol polysulfone",*Oc1ccc(cc1)S(=O)(=O)c1ccc(cc1)Oc2ccc(cc2)c3ccc(cc3)*,,Lab synth polymer,504.0,1.291
+TMBIPSF,"3,3',5,5'-tetramethyl biphenol polysulfone",*Oc1ccc(cc1)S(=O)(=O)c1ccc(cc1)Oc2c(C)cc(cc2(C))c3cc(C)c(c(C)c3)*,,Lab synth polymer,561.0,1.195
+HMBIPSF,"2,2',3,3',5,5'-hexamethyl biphenol polysulfone",*Oc1ccc(cc1)S(=O)(=O)c1ccc(cc1)Oc2c(C)c(C)c(cc2(C))c3c(C)c(C)c(c(C)c3)*,,Lab synth polymer,568.0,1.144
+PVTMS,poly(vinyltrimethyl silane),*CC([Si](C)(C)C)*,,Lab synth polymer,393.0,0.885
+PTMSDPA,poly[1-phenyl-2-[p-(trimethylsilyl)phenyl]acetylene],*C(c1ccc([Si](C)(C)C)cc1)=C(c2ccccc2)*,,Lab synth polymer,473.0,0.91
+PMP,poly(4-methyl-2-pentyne),*C(C)=C(C(C)C)*,,Lab synth polymer,523.0,0.78
+PMP,poly(4-methyl-2-pentyne),*C(C)=C(C(C)C)*,,Lab synth polymer,523.0,0.84
+PPP,poly(1-phenyl-1-propyne),*C(C)=C(c1ccccc1)*,,Lab synth polymer,473.0,1.0
+PMA,poly(methyl acrylate),*CC(C(=O)OC)*,,"Institute for Chemical Research, University of Kyoto",283.0,1.2
+PMA,poly(methyl acrylate),*CC(C(=O)OC)*,,Aldrich Chemical Co.,285.0,1.21
+PMA,poly(methyl acrylate),*CC(C(=O)OC)*,,Celanese Chemical Company,291.0,1.21
+P2VP,poly(2-vinylpyridine),*CC(c1ccccn1)*,,Toyo Soda Manufacturing Company,377.0,1.156
+PTMGP,poly(trimethylgermyl)propyne,*C(C)=C([Ge](C)(C)C)*,,Lab synth polymer,523.0,1.19

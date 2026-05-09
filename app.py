@@ -8,7 +8,7 @@ from rdkit.Chem.Draw import rdMolDraw2D
 from rdkit import RDLogger
 from rdkit.Chem import RDConfig
 from torch_geometric.data import Data
-from torch_geometric.nn import GCNConv, global_mean_pool, global_max_pool
+from torch_geometric.nn import AttentiveFP, GCNConv, global_mean_pool, global_max_pool
 from torch_geometric.explain import Explainer, GNNExplainer
 from huggingface_hub import hf_hub_download
 import gradio as gr
@@ -49,78 +49,78 @@ def mol_to_graph(smiles):
         atom_features.append(features)
     x = torch.tensor(atom_features, dtype=torch.float)
     edge_index = []
+    edge_attr = []
     for bond in mol.GetBonds():
         i = bond.GetBeginAtomIdx()
         j = bond.GetEndAtomIdx()
         edge_index += [[i, j], [j, i]]
+        bond_feat = [
+            float(bond.GetBondTypeAsDouble()),
+            float(bond.GetIsAromatic()),
+            float(bond.IsInRing()),
+        ]
+        edge_attr += [bond_feat, bond_feat]
     if len(edge_index) == 0:
         return None, None
     edge_index = torch.tensor(edge_index, dtype=torch.long).t().contiguous()
+    edge_attr = torch.tensor(edge_attr, dtype=torch.float)
     batch = torch.zeros(x.size(0), dtype=torch.long)
-    return Data(x=x, edge_index=edge_index, batch=batch), mol
+    return Data(x=x, edge_index=edge_index, edge_attr=edge_attr, batch=batch), mol
 
-class MultiTaskGNN(nn.Module):
-    def __init__(self, input_dim=8, hidden_dim=128):
-        super(MultiTaskGNN, self).__init__()
-        self.conv1 = GCNConv(input_dim, hidden_dim)
-        self.conv2 = GCNConv(hidden_dim, hidden_dim)
-        self.conv3 = GCNConv(hidden_dim, hidden_dim)
-        self.conv4 = GCNConv(hidden_dim, hidden_dim)
-        self.bn1 = nn.BatchNorm1d(hidden_dim)
-        self.bn2 = nn.BatchNorm1d(hidden_dim)
-        self.bn3 = nn.BatchNorm1d(hidden_dim)
-        self.bn4 = nn.BatchNorm1d(hidden_dim)
-        self.shared = nn.Sequential(
-            nn.Linear(hidden_dim * 2, 128),
-            nn.ReLU(),
-            nn.Dropout(0.1),
+class AttentiveFPMultiTask(nn.Module):
+    def __init__(self, in_channels=8, hidden_channels=128, edge_dim=3):
+        super().__init__()
+        self.encoder = AttentiveFP(
+            in_channels=in_channels,
+            hidden_channels=hidden_channels,
+            out_channels=hidden_channels,
+            edge_dim=edge_dim,
+            num_layers=4,
+            num_timesteps=2,
+            dropout=0.1,
         )
-        self.head_density = nn.Sequential(
-            nn.Linear(128, 32), nn.ReLU(), nn.Linear(32, 1))
-        self.head_tc = nn.Sequential(
-            nn.Linear(128, 32), nn.ReLU(), nn.Linear(32, 1))
-        self.head_tg = nn.Sequential(
-            nn.Linear(128, 32), nn.ReLU(), nn.Linear(32, 1))
+        self.shared = nn.Sequential(
+            nn.Linear(hidden_channels, 128), nn.ReLU(), nn.Dropout(0.1))
+        self.head_density = nn.Sequential(nn.Linear(128, 32), nn.ReLU(), nn.Linear(32, 1))
+        self.head_tc = nn.Sequential(nn.Linear(128, 32), nn.ReLU(), nn.Linear(32, 1))
+        self.head_tg = nn.Sequential(nn.Linear(128, 32), nn.ReLU(), nn.Linear(32, 1))
 
-    def forward(self, x, edge_index, batch=None):
+    def forward(self, x, edge_index, edge_attr, batch=None):
         if batch is None:
             batch = torch.zeros(x.size(0), dtype=torch.long)
-        x = torch.relu(self.bn1(self.conv1(x, edge_index)))
-        x = torch.relu(self.bn2(self.conv2(x, edge_index)))
-        x = torch.relu(self.bn3(self.conv3(x, edge_index)))
-        x = torch.relu(self.bn4(self.conv4(x, edge_index)))
-        x = torch.cat([global_mean_pool(x, batch),
-                       global_max_pool(x, batch)], dim=1)
-        shared = self.shared(x)
-        return self.head_density(shared).squeeze(), self.head_tc(shared).squeeze(), self.head_tg(shared).squeeze()
+        h = self.encoder(x, edge_index, edge_attr, batch)
+        shared = self.shared(h)
+        return (self.head_density(shared).squeeze(),
+                self.head_tc(shared).squeeze(),
+                self.head_tg(shared).squeeze())
 
 # Load data stats
-df = pd.read_csv('polymer_data/combined_dataset.csv')
+df = pd.read_csv('polymer_data/combined_dataset_v2.csv')
 stats = {}
 for col in ['Density', 'Tc', 'Tg']:
     stats[col] = {'mean': df[col].mean(), 'std': df[col].std()}
 
 # Load model
-model = MultiTaskGNN(input_dim=8, hidden_dim=128)
+model = AttentiveFPMultiTask(in_channels=8, hidden_channels=128, edge_dim=3)
 model_path = hf_hub_download(
     repo_id='Ethan-Im/polyinverse-model',
-    filename='best_combined.pt',
+    filename='best_attentivefp_combined.pt',
     repo_type='model'
 )
 model.load_state_dict(torch.load(model_path, map_location='cpu'))
 model.eval()
 
-# Explainer model (density head only)
-class DensityGNN(nn.Module):
+# Explainer (density head)
+class DensityWrapper(nn.Module):
     def __init__(self, base_model):
         super().__init__()
         self.base = base_model
 
-    def forward(self, x, edge_index, batch=None):
-        pred_d, _, _ = self.base(x, edge_index, batch)
+    def forward(self, x, edge_index, edge_attr, batch=None):
+        pred_d, _, _ = self.base(x, edge_index, edge_attr, batch)
         return pred_d
 
-density_model = DensityGNN(model)
+density_model = DensityWrapper(model)
 
 explainer = Explainer(
     model=density_model,
@@ -128,11 +128,7 @@ explainer = Explainer(
     explanation_type='model',
     node_mask_type='attributes',
     edge_mask_type='object',
-    model_config=dict(
-        mode='regression',
-        task_level='graph',
-        return_type='raw',
-    ),
+    model_config=dict(mode='regression', task_level='graph', return_type='raw'),
 )
 
 def predict(smiles):
@@ -140,9 +136,9 @@ def predict(smiles):
     if graph is None or mol is None:
         return "Invalid SMILES", None
     with torch.no_grad():
-        pred_d, pred_t, pred_tg = model(graph.x, graph.edge_index, graph.batch)
+        pred_d, pred_tc, pred_tg = model(graph.x, graph.edge_index, graph.edge_attr, graph.batch)
         density = pred_d.item() * stats['Density']['std'] + stats['Density']['mean']
-        tc = pred_t.item() * stats['Tc']['std'] + stats['Tc']['mean']
+        tc = pred_tc.item() * stats['Tc']['std'] + stats['Tc']['mean']
         tg = pred_tg.item() * stats['Tg']['std'] + stats['Tg']['mean']
     img = Draw.MolToImage(mol, size=(300, 300))
     result = f"""## Prediction Results
@@ -154,7 +150,7 @@ def predict(smiles):
 | Tc       | {tc:.4f} (normalized) |
 | Tg       | {tg:.2f} °C |
 
-*Model: Multi-task GNN (R² Density=0.803)*
+*Model: AttentiveFP Multi-task (R² Density=0.871, Tc=0.728, Tg=0.793)*
 """
     return result, img
 
@@ -166,6 +162,7 @@ def explain(smiles):
     explanation = explainer(
         x=graph.x,
         edge_index=graph.edge_index,
+        edge_attr=graph.edge_attr,
         batch=graph.batch,
     )
 
@@ -232,53 +229,60 @@ def mutate_smiles(smiles):
         pass
     return None
 
-def predict_density(smiles):
+def predict_properties(smiles):
     graph, mol = mol_to_graph(smiles)
     if graph is None:
-        return None
+        return None, None, None
     with torch.no_grad():
-        pred_d, _, _ = model(graph.x, graph.edge_index, graph.batch)
-        return pred_d.item() * stats['Density']['std'] + stats['Density']['mean']
+        pred_d, pred_tc, pred_tg = model(graph.x, graph.edge_index, graph.edge_attr, graph.batch)
+        density = pred_d.item() * stats['Density']['std'] + stats['Density']['mean']
+        tc = pred_tc.item() * stats['Tc']['std'] + stats['Tc']['mean']
+        tg = pred_tg.item() * stats['Tg']['std'] + stats['Tg']['mean']
+    return density, tc, tg
 
-def inverse_design(target_density, tolerance, n_iterations):
-    df_density = df[df['Density'].notna()]
-    population = df_density['SMILES'].sample(min(50, len(df_density)), random_state=42).tolist()
+def inverse_design(target_density, target_tc, target_tg,
+                   w_density, w_tc, w_tg,
+                   tolerance, n_iterations):
+    population = df['SMILES'].dropna().sample(min(50, len(df)), random_state=42).tolist()
     best_candidates = []
+
     for _ in range(int(n_iterations)):
         scores = []
         for smiles in population:
-            pred = predict_density(smiles)
-            if pred is None:
+            density, tc, tg = predict_properties(smiles)
+            if density is None:
                 continue
             sa = get_sa_score(smiles)
-            score = abs(pred - target_density)
-            combined = score + max(0, sa - 4.0) * 0.1
-            scores.append((smiles, pred, score, sa, combined))
+            err_d = abs(density - target_density) * w_density
+            err_tc = abs(tc - target_tc) * w_tc
+            err_tg = abs(tg - target_tg) * w_tg
+            combined = err_d + err_tc + err_tg + max(0, sa - 4.0) * 0.1
+            scores.append((smiles, density, tc, tg, combined, sa))
+
         scores.sort(key=lambda x: x[4])
-        for smiles, pred, score, sa, combined in scores:
-            if score <= tolerance and sa <= 4.0:
+        for smiles, d, tc, tg, combined, sa in scores:
+            err = abs(d - target_density)
+            if err <= tolerance and sa <= 4.0:
                 if smiles not in [c[0] for c in best_candidates]:
-                    best_candidates.append((smiles, pred, score, sa))
+                    best_candidates.append((smiles, d, tc, tg, err, sa))
+
         survivors = [s[0] for s in scores[:25]]
         new_population = survivors.copy()
         while len(new_population) < 50:
             parent = random.choice(survivors)
             mutated = mutate_smiles(parent)
-            if mutated:
-                new_population.append(mutated)
-            else:
-                new_population.append(random.choice(survivors))
+            new_population.append(mutated if mutated else random.choice(survivors))
         population = new_population
 
     if not best_candidates:
         return "No candidates found. Try increasing tolerance.", None
 
-    best_candidates.sort(key=lambda x: x[2])
+    best_candidates.sort(key=lambda x: x[4])
     top = best_candidates[:5]
-    result = f"## Inverse Design Results\n**Target:** {target_density:.3f} g/ml\n\n"
-    result += "| SMILES | Predicted | Error | SA Score |\n|--------|-----------|-------|----------|\n"
-    for smiles, pred, error, sa in top:
-        result += f"| `{smiles[:35]}` | {pred:.4f} | {error:.4f} | {sa:.2f} |\n"
+    result = f"## Inverse Design Results\n**Targets:** Density={target_density:.3f} | Tc={target_tc:.1f} | Tg={target_tg:.1f}°C\n\n"
+    result += "| SMILES | Density | Tc | Tg | Error | SA |\n|--------|---------|----|----|-------|----|\n"
+    for smiles, d, tc, tg, err, sa in top:
+        result += f"| `{smiles[:30]}` | {d:.4f} | {tc:.1f} | {tg:.1f} | {err:.4f} | {sa:.2f} |\n"
 
     best_mol = Chem.MolFromSmiles(top[0][0])
     img = Draw.MolToImage(best_mol, size=(300, 300)) if best_mol else None
@@ -286,10 +290,11 @@ def inverse_design(target_density, tolerance, n_iterations):
 
 examples = ["*CC(c1ccccc1)*", "*CC(C(=O)OC)*", "*CC(Cl)*", "*C(F)(F)*", "*CC*"]
 
-with gr.Blocks(title="Polyinverse v4") as demo:
+with gr.Blocks(title="Polyinverse v5") as demo:
     gr.Markdown("""
-# 🧪 Polyinverse
+# 🧪 Polyinverse v5
 ## AI-powered Polymer Property Predictor & Inverse Design
+*AttentiveFP Multi-task | R² Density=0.871, Tc=0.728, Tg=0.793*
     """)
 
     with gr.Tabs():
@@ -322,16 +327,28 @@ with gr.Blocks(title="Polyinverse v4") as demo:
             explain_btn.click(explain, inputs=explain_input, outputs=[explain_text, explain_img])
 
         with gr.Tab("🎯 Inverse Design"):
-            gr.Markdown("### Design molecules with target density")
+            gr.Markdown("### Design molecules with target properties")
             with gr.Row():
                 with gr.Column():
-                    target_density = gr.Slider(minimum=0.8, maximum=2.0, value=1.2, step=0.05, label="Target Density (g/ml)")
-                    tolerance = gr.Slider(minimum=0.01, maximum=0.2, value=0.08, step=0.01, label="Tolerance")
-                    n_iter = gr.Slider(minimum=100, maximum=500, value=200, step=100, label="Iterations")
+                    gr.Markdown("**Target Properties**")
+                    target_density = gr.Slider(0.8, 2.0, value=1.2, step=0.05, label="Target Density (g/ml)")
+                    target_tc = gr.Slider(0, 500, value=200, step=10, label="Target Tc")
+                    target_tg = gr.Slider(-100, 300, value=100, step=10, label="Target Tg (°C)")
+                    gr.Markdown("**Property Weights**")
+                    w_density = gr.Slider(0.0, 1.0, value=0.5, step=0.1, label="Density Weight")
+                    w_tc = gr.Slider(0.0, 1.0, value=0.3, step=0.1, label="Tc Weight")
+                    w_tg = gr.Slider(0.0, 1.0, value=0.2, step=0.1, label="Tg Weight")
+                    gr.Markdown("**Search Settings**")
+                    tolerance = gr.Slider(0.01, 0.2, value=0.08, step=0.01, label="Tolerance")
+                    n_iter = gr.Slider(100, 500, value=200, step=100, label="Iterations")
                     design_btn = gr.Button("🎯 Design", variant="primary")
                 with gr.Column():
                     design_output = gr.Markdown()
                     design_img = gr.Image(label="Best Candidate")
-            design_btn.click(inverse_design, inputs=[target_density, tolerance, n_iter], outputs=[design_output, design_img])
+            design_btn.click(
+                inverse_design,
+                inputs=[target_density, target_tc, target_tg, w_density, w_tc, w_tg, tolerance, n_iter],
+                outputs=[design_output, design_img]
+            )
 
 demo.launch(share=True)
